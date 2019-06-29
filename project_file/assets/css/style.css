@@ -1,0 +1,29 @@
+h1 
+{
+    text-align: center;
+} 
+
+.title_row
+{
+    background-color: lightblue;
+    height: 100px;
+    padding-top: 20px;
+}
+
+.hangman
+{
+    background-color: lightcoral;
+    height: 300px;
+}
+
+.attempts
+{
+    background-color: lightgreen;
+    height: 200px;
+}
+
+.gwords
+{
+    background-color: lightsalmon;
+    height: 200px;
+}
