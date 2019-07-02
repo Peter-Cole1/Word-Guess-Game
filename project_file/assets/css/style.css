@@ -27,3 +27,24 @@ h1
     background-color: lightsalmon;
     height: 200px;
 }
+
+.underScoreHTML
+{
+    text-align: center;
+    padding-top: 15%;
+    font-size: 40px;
+}
+
+.incorrectGuess 
+{
+    text-align: center;
+    padding-top: 3%;
+    font-size: 40px;
+}
+
+.countDown
+{
+    text-align: center;
+    padding-top: 3%;
+    font-size: 40px; 
+}
