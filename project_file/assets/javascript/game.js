@@ -2,6 +2,9 @@
 const word = ['doge', 'corgi', 'shiba', 'pug']
 
 //choose word randomly
+
+// ====================== MAIN VARIABLES =====================================
+
 let rng = Math.floor(Math.random() * word.length);
 let chosenWord = word[rng];
 let correctLetter = [];
@@ -13,7 +16,12 @@ let displayUnderScore = document.getElementsByClassName('underScoreHTML');
 let displayIncorrectGuess = document.getElementsByClassName('incorrectGuess');
 let displayCount = document.getElementsByClassName('countDown');
 
+// ===========================================================================
+
 console.log(chosenWord);
+
+
+
 //create underscores depending on length of chosenWord
 let underScoreLength = () =>
 {
@@ -25,7 +33,7 @@ let underScoreLength = () =>
 }
 
 
-//user chooses letter from alphabet
+//user chooses letter on keyboard
 document.addEventListener('keypress', (event) => 
 {
     let keyword = String.fromCharCode(event.keyCode);
@@ -33,9 +41,16 @@ document.addEventListener('keypress', (event) =>
     
 
 
-//if correct, add to correctLetters array
+//if correct
 if (chosenWord.indexOf(keyword) > -1) 
     {
+        if (total.includes(keyword))
+        {
+
+        }
+
+        else
+        {
         //add correct letter to correctLetter array
         correctLetter.push(keyword);
         total.push(keyword);
@@ -43,8 +58,13 @@ if (chosenWord.indexOf(keyword) > -1)
         //replace underscore with correct letter
         underScore[chosenWord.indexOf(keyword)] = keyword;
 
+        //show underscores in html, seperated by spaces
         displayUnderScore[0].innerHTML = underScore.join(' ');
+
+        //add to 'total' array/counter
         displayCount[0].innerHTML = total.length;
+        }
+
 
     
         
@@ -54,14 +74,40 @@ if (chosenWord.indexOf(keyword) > -1)
                 alert("You did the thing!");
             }
         
+
+        //if counter hits 10, a "lose" alert will trigger
+        if (total.length > 9 && underScore.join('') != chosenWord)
+            {
+                alert("Better luck next time, dawg");
+            }
+    
     }
-//if incorrect, add to incorrectLetters array
+//if incorrect
 else
-    {
+    {   //if key has already been pressed, do nothing
+        if (total.includes(keyword)) {}
+
+        //if not, do the things
+        else
+        {
+        //add letter to incorrectLetter array
         incorrectLetter.push(keyword);
+
+        //push to "total" array for the counter
         total.push(keyword);
+
+        //show wrong guesses in the html with commas
         displayIncorrectGuess[0].innerHTML = incorrectLetter.join(', ')
+
+        //add to 'total' array/counter
         displayCount[0].innerHTML = total.length;
+
+        //if counter hits 10, a "lose" alert will trigger
+        if (total.length > 9)
+        {
+            alert("Better luck next time, dawg");
+        }
+        }
 
     }
     

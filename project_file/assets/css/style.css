@@ -3,6 +3,12 @@ h1
     text-align: center;
 } 
 
+h6
+{
+    font-size: 10px;
+    text-align: center;
+}
+
 .title_row
 {
     background-color: lightblue;
