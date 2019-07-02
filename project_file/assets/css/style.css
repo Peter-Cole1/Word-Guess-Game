@@ -54,3 +54,26 @@ h6
     padding-top: 3%;
     font-size: 40px; 
 }
+
+.reset 
+{
+    height: 200px;   
+}
+
+#resetButton
+{
+    background-color: lightsteelblue;
+
+    text-align: center;
+    font-size: 25px;
+    height: 70%;
+    width: 100%;
+    border-radius: 50%;
+    
+    
+}
+
+#resetButton:hover
+{
+    background-color: lightcoral;
+}

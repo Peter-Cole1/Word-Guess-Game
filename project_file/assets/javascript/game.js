@@ -18,9 +18,6 @@ let displayCount = document.getElementsByClassName('countDown');
 
 // ===========================================================================
 
-console.log(chosenWord);
-
-
 
 //create underscores depending on length of chosenWord
 let underScoreLength = () =>
