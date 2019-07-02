@@ -16,6 +16,66 @@ let displayUnderScore = document.getElementsByClassName('underScoreHTML');
 let displayIncorrectGuess = document.getElementsByClassName('incorrectGuess');
 let displayCount = document.getElementsByClassName('countDown');
 
+let allLettersGuessed = [];
+let answer = "";
+let answerState = [];
+let wrongGuesses = [];
+
+let startGame = () => {
+    allLettersGuessed = [];
+    answerState = [];
+    wrongGuesses = [];
+    let rng = Math.floor(Math.random() * word.length);
+    answer = word[rng];
+    for (let i = 0; i < answer.length; i++) {
+        answerState.push(false);
+    }
+    drawWordDisplay();
+}
+
+let drawWordDisplay = () => {
+    let display = "";
+    for (let i = 0; i < answer.length; i++) {
+        if(answerState[i]){
+            display += answer[i] + " " ;
+        }        
+        else {
+            display += "_ "
+        }
+    }
+    document.getElementById("wordDisplayDiv").innerHTML = display;
+}
+
+let drawWrongGuesses = () => {
+    document.getElementById("wrongGuessesDiv").innerHTML = wrongGuesses.toString();
+}
+
+
+document.addEventListener('keypress', (event) => {
+    let guessedLetter = String.fromCharCode(event.keyCode);
+    if(allLettersGuessed.includes(guessedLetter)){
+        return;
+    }
+
+    let atleastOneRight = false;
+    for (let i = 0; i < answer.length; i++) {
+        let letter = answer[i];
+        if(letter == guessedLetter){
+            atleastOneRight = true;
+            answerState[i] = true;
+        }
+    }
+    
+    if(!atleastOneRight){
+        wrongGuesses.push(guessedLetter);
+        if(wrongGuesses.length > 5)
+        drawWrongGuesses();
+        return;
+    }
+
+    
+    drawWordDisplay();
+}
 // ===========================================================================
 
 
@@ -41,27 +101,21 @@ document.addEventListener('keypress', (event) =>
 //if correct
 if (chosenWord.indexOf(keyword) > -1) 
     {
-        if (total.includes(keyword))
+        if (!total.includes(keyword))
         {
+            //add correct letter to correctLetter array
+            correctLetter.push(keyword);
+            total.push(keyword);
 
+            //replace underscore with correct letter
+            underScore[chosenWord.indexOf(keyword)] = keyword;
+
+            //show underscores in html, seperated by spaces
+            displayUnderScore[0].innerHTML = underScore.join(' ');
+
+            //add to 'total' array/counter
+            displayCount[0].innerHTML = total.length;
         }
-
-        else
-        {
-        //add correct letter to correctLetter array
-        correctLetter.push(keyword);
-        total.push(keyword);
-
-        //replace underscore with correct letter
-        underScore[chosenWord.indexOf(keyword)] = keyword;
-
-        //show underscores in html, seperated by spaces
-        displayUnderScore[0].innerHTML = underScore.join(' ');
-
-        //add to 'total' array/counter
-        displayCount[0].innerHTML = total.length;
-        }
-
 
     
         
